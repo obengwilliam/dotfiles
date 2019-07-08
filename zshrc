@@ -97,6 +97,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
  alias zshconfig="vim ~/.zshrc"
  alias ohmyzsh="vim ~/.oh-my-zsh"
+ alias gs="git status"
+
 # Enter into the right namespace given a cluster and its namespace
 kcn(){
    # connect to the right cluster
