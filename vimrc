@@ -6,9 +6,7 @@ set encoding=UTF-8
 set nocompatible 
 " set leader to space
 let mapleader = ","
-execute pathogen#infect()
-
-
+"execute pathogen#infect()
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -16,13 +14,32 @@ call vundle#begin()
 
 "let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plugin 'burner/vim-svelte'
+Plugin 'vim-airline/vim-airline'
+Plugin 'mileszs/ack.vim'
+Plugin 'moll/vim-node'
+Plugin 'prettier/vim-prettier'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'othree/yajs.vim'
+Plugin 'w0rp/ale'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-fugitive'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'SirVer/ultisnips'
 Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-surround'
-Plugin 'evanleck/vim-svelte'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'tomasr/molokai'
 
 syntax on 
 filetype indent on
@@ -41,14 +58,15 @@ set t_Co=256
 let javaScript_fold=1  
 let g:javascript_plugin_jsdoc = 1
 let g:SimpylFold_docstring_preview=1
-
+let g:used_javascript_libs = 'ramda,lo-dash,chai,d3,react'
 
 let g:solarized_termtrans = 1
 let g:solarized_termcolors=256
 let g:solarized_visibility = "normal"
 let g:solarized_contrast = "normal"
 set background=dark
-colorscheme solarized 
+" colorscheme solarized 
+colorscheme molokai 
 let g:airline_theme= "cool"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
@@ -100,6 +118,7 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
 \   'javascript': ['prettier-standard'],
+\   'css': ['stylelint-config-standard'],
 \   'python': ['isort','yapf', 'autopep8'],
 \}
 
@@ -114,7 +133,7 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 
 " let g:ale_lint_delay= 1000
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
@@ -195,4 +214,3 @@ endif
 " AsyncRun
 let g:asyncrun_open = 8
 
-let g:livedown_open=1

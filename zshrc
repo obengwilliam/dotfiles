@@ -1,9 +1,12 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mac/.oh-my-zsh"
-
+export ZSH=$HOME/.oh-my-zsh
+export GOPATH=$HOME/Work/Go
+export CPPFLAGS=-I/usr/local/opt/openssl/include
+export LDFLAGS=-L/usr/local/opt/openssl/lib
+#
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -77,8 +80,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -121,8 +124,13 @@ export COMPOSER_PATH=~/.composer/vendor/bin
 export PATH=$PATH:$MONGO_PATH/bin:$COMPOSER_PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:$(go env GOPATH)/bin
-export PROJECT_PATHS=/Users/mac/dev
+export PROJECT_PATHS=~/Work
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/mac/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mac/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/admin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/admin/google-cloud-sdk/path.zsh.inc'; fi
 alias git=hub
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
