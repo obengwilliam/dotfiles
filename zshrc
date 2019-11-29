@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+  #
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export GOPATH=$HOME/Work/Go
@@ -101,6 +101,7 @@ export LC_ALL=en_US.UTF-8
  alias zshconfig="vim ~/.zshrc"
  alias ohmyzsh="vim ~/.oh-my-zsh"
  alias gs="git status"
+ alias k="kubectl"
 
 # Enter into the right namespace given a cluster and its namespace
 kcn(){
@@ -125,12 +126,51 @@ export PATH=$PATH:$MONGO_PATH/bin:$COMPOSER_PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:$(go env GOPATH)/bin
 export PROJECT_PATHS=~/Work
-
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+#
+#
+#tinycareterminal https://github.com/notwaldorf/tiny-care-terminal
+alias tct="tiny-care-terminal"
+export TTC_BOTS='tinycarebot,selfcare_bot,magicrealismbot'
+export TTC_REPOS='/Users/obeng/Work/current,/Users/obeng/Work/studytime,/Users/obeng/Work/contribute'
+export TTC_REPOS_DEPTH=2
+export TTC_SAY_BOX='ironman'
+export TTC_GITBOT='gitlog'
+export TTC_UPDATE_INTERVAL=20
+export TTC_TERMINAL_TITLE=false
+export TTC_WEATHER='Accra, Ghana'
+export TTC_POMODORO=25
+export TTC_TERMINAL_TITLE=false
+export TTC_APIKEYS=false
+export TTC_BREAK=10
+#
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/admin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/admin/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/obeng/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/obeng/google-cloud-sdk/path.zsh.inc'; fi
 alias git=hub
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+#
+#kube-ps1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+# added by Anaconda3 2019.10 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/opt/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+export PATH=/usr/local/opt/ruby/bin:$PATH

@@ -14,6 +14,8 @@ call vundle#begin()
 
 "let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'haishanh/night-owl.vim'
+Plugin   'uber/prototool', { 'rtp':'vim/prototool' }
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'kien/ctrlp.vim'
@@ -50,7 +52,6 @@ call vundle#end() " required
 set runtimepath^=~/.vim/bundle/node
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-" " colorscheme gruvbox
 set termguicolors
 set foldmethod=indent
 set foldlevelstart=99
@@ -64,9 +65,11 @@ let g:solarized_termtrans = 1
 let g:solarized_termcolors=256
 let g:solarized_visibility = "normal"
 let g:solarized_contrast = "normal"
-set background=dark
-" colorscheme solarized 
+set background=light
+"colorscheme solarized 
 colorscheme molokai 
+"colorscheme night-owl 
+
 let g:airline_theme= "cool"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
@@ -113,6 +116,8 @@ set splitright
 
 let g:ale_linters = {
 \   'javascript': ['standard'],
+\  'go': ['golint'],
+\   'proto': ['prototool-lint'],
 \   'python': ['pylint', 'pycodestyle'],
 \}
 
