@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm pj zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git npm pj zsh-syntax-highlighting zsh-autosuggestions dotenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,10 +100,10 @@ export LC_ALL=en_US.UTF-8
 # Example aliases
  alias zshconfig="vim ~/.zshrc"
  alias ohmyzsh="vim ~/.oh-my-zsh"
+ alias vim="nvim"
  alias gs="git status"
  alias k="kubectl"
-
-# Enter into the right namespace given a cluster and its namespace
+alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 kcn(){
    # connect to the right cluster
    gcloud container clusters get-credentials $1
@@ -142,7 +142,7 @@ export TTC_WEATHER='Accra, Ghana'
 export TTC_POMODORO=25
 export TTC_TERMINAL_TITLE=false
 export TTC_APIKEYS=false
-export TTC_BREAK=10
+export TTC_BREAK=20
 #
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/obeng/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/obeng/google-cloud-sdk/path.zsh.inc'; fi
@@ -172,5 +172,11 @@ else
 fi
 unset __conda_setup
 # <<< conda init <<<
-
+export PATH=$HOME/.gem/ruby/2.6.3.p62/bin:$PATH
 export PATH=/usr/local/opt/ruby/bin:$PATH
+
+[ -f "/Users/obeng/.shopify-app-cli/shopify.sh" ] && source "/Users/obeng/.shopify-app-cli/shopify.sh"
+
+eval "$(pyenv init -)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,65 +1,62 @@
 let g:nrrw_rgn_vert=1
 
-filetype  off 
-
 set encoding=UTF-8
 set nocompatible 
 " set leader to space
 let mapleader = ","
-"execute pathogen#infect()
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-"let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'haishanh/night-owl.vim'
-Plugin   'uber/prototool', { 'rtp':'vim/prototool' }
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
-Plugin 'burner/vim-svelte'
-Plugin 'vim-airline/vim-airline'
-Plugin 'mileszs/ack.vim'
-Plugin 'moll/vim-node'
-Plugin 'prettier/vim-prettier'
-Plugin 'mxw/vim-jsx'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'othree/yajs.vim'
-Plugin 'w0rp/ale'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-fugitive'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'SirVer/ultisnips'
-Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'fatih/vim-go'
-Plugin 'tpope/vim-surround'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'tomasr/molokai'
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'sheerun/vim-polyglot'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'rizzatti/dash.vim'
+Plug 'chrisbra/NrrwRgn'
+Plug 'hashivim/vim-terraform'
+Plug 'haishanh/night-owl.vim'
+Plug 'burner/vim-svelte'
+Plug 'uber/prototool', { 'rtp':'vim/prototool' }
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plug 'vim-airline/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'moll/vim-node'
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'tpope/vim-commentary'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
+Plug 'w0rp/ale'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-fugitive'
+Plug 'StanAngeloff/php.vim'
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'fatih/vim-go'
+Plug 'tpope/vim-surround'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tomasr/molokai'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
-syntax on 
-filetype indent on
-filetype plugin on 
-
-call vundle#end() " required
 
 set runtimepath^=~/.vim/bundle/node
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 set termguicolors
-set foldmethod=indent
-set foldlevelstart=99
-set t_Co=256
+set foldmethod=syntax  
+set foldlevelstart=30
 let javaScript_fold=1  
+
+set t_Co=256
 let g:javascript_plugin_jsdoc = 1
+
 let g:SimpylFold_docstring_preview=1
 let g:used_javascript_libs = 'ramda,lo-dash,chai,d3,react'
+
+let g:deoplete#enable_at_startup = 1
 
 let g:solarized_termtrans = 1
 let g:solarized_termcolors=256
@@ -89,7 +86,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Automatically delet files deleted with NerdTree
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeShowHidden=1
-let g:NERDTreeWinSize = 20
+let g:NERDTreeQuitOnOpen = 1 
+" let g:NERDTreeWinSize = 20
 
 " Open nerdtree by default
 
@@ -117,12 +115,14 @@ set splitright
 let g:ale_linters = {
 \   'javascript': ['standard'],
 \  'go': ['golint'],
-\   'proto': ['prototool-lint'],
-\   'python': ['pylint', 'pycodestyle'],
+\'proto': ['prototool-lint'],
+\  'typescript':['tslint'],
+\  'python': ['pylint', 'pycodestyle'],
 \}
 
 let g:ale_fixers = {
 \   'javascript': ['prettier-standard'],
+\   'html': ['prettier-standard'],
 \   'css': ['stylelint-config-standard'],
 \   'python': ['isort','yapf', 'autopep8'],
 \}
@@ -136,26 +136,11 @@ let g:ale_lint_on_save = 1
 " Set this setting in vimrc if you want to fix files automatically on save.
 " This is off by default.
 let g:ale_fix_on_save = 1
-
-" let g:ale_lint_delay= 1000
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-" let g:syntastic_javascript_checkers = ['standard']
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1 
-" let g:syntastic_check_on_wq = 0
-
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
-
-
+" fzf
+nnoremap <c-p> :GFiles<cr>
 
 noremap <Leader>w :w<CR>
 noremap <Leader>c :wq<CR>
@@ -184,38 +169,55 @@ nmap <c-h> <c-w>h
 nmap <c-o> <c-w>o
 nmap <c-t> <c-w>T
 
-
-"ctrlp
-let g:ctrlp_custom_ignore =  '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'  
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_use_caching = 1 
-
-" Ultisnips
-function! g:UltiSnips_Complete()
-  call UltiSnips#ExpandSnippet()
-  if g:ulti_expand_res == 0
-    if pumvisible()
-      return "\<C-n>"
-    else
-      call UltiSnips#JumpForwards()
-      if g:ulti_jump_forwards_res == 0
-        return "\<TAB>"
-      endif
-    endif
-  endif
-  return ""
-endfunction
-
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-
 " AsyncRun
 let g:asyncrun_open = 8
+
+"Conc exmaple config from here
+"will remove later, as i have time to go through them
+ 
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+let g:coc_node_path = '/Users/obeng/.nvm/versions/node/v10.17.0/bin/node' 
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
