@@ -1,4 +1,9 @@
 # If you come from bash you might have to change your $PATH.
+KUBE_EDITOR="vim"
+
+export HELPDIR='/usr/share/zsh/help'
+alias help=run-help
+
 export PATH=$HOME/bin:/usr/local/bin:$PATH
   #
 # Path to your oh-my-zsh installation.
@@ -6,6 +11,10 @@ export ZSH=$HOME/.oh-my-zsh
 export GOPATH=$HOME/Work/Go
 export CPPFLAGS=-I/usr/local/opt/openssl/include
 export LDFLAGS=-L/usr/local/opt/openssl/lib
+
+export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#
 #
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,7 +80,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm pj zsh-syntax-highlighting zsh-autosuggestions dotenv)
+plugins=(git npm pj zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,9 +107,12 @@ export LC_ALL=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+ alias lg='lazygit'
+ alias d='degit'
  alias zshconfig="vim ~/.zshrc"
  alias ohmyzsh="vim ~/.oh-my-zsh"
  alias vim="nvim"
+ alias vi="nvim"
  alias gs="git status"
  alias k="kubectl"
 alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
@@ -122,11 +134,14 @@ kdp(){
 
 export MONGO_PATH=/usr/local/Cellar/mongodb/3.4.1
 export COMPOSER_PATH=~/.composer/vendor/bin
+export CARGO_PATH=~/.cargo/bin
 export PATH=$PATH:$MONGO_PATH/bin:$COMPOSER_PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:$(go env GOPATH)/bin
 export PROJECT_PATHS=~/Work
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export PATH=$CARGO_PATH:$PATH
+
 #
 #
 #tinycareterminal https://github.com/notwaldorf/tiny-care-terminal
@@ -139,10 +154,10 @@ export TTC_GITBOT='gitlog'
 export TTC_UPDATE_INTERVAL=20
 export TTC_TERMINAL_TITLE=false
 export TTC_WEATHER='Accra, Ghana'
-export TTC_POMODORO=25
+export TTC_POMODORO=50
 export TTC_TERMINAL_TITLE=false
 export TTC_APIKEYS=false
-export TTC_BREAK=20
+export TTC_BREAK=15
 #
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/obeng/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/obeng/google-cloud-sdk/path.zsh.inc'; fi
@@ -178,5 +193,7 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 [ -f "/Users/obeng/.shopify-app-cli/shopify.sh" ] && source "/Users/obeng/.shopify-app-cli/shopify.sh"
 
 eval "$(pyenv init -)"
+
+autoload -Uz tetriscurses
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
