@@ -1,11 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 KUBE_EDITOR="vim"
-
+export PIPENV_VENV_IN_PROJECT=true
 export HELPDIR='/usr/share/zsh/help'
 alias help=run-help
-
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-  #
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export GOPATH=$HOME/Work/Go
@@ -14,6 +12,17 @@ export LDFLAGS=-L/usr/local/opt/openssl/lib
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Configuration for virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" 
+
+export PATH="/usr/local/bin:$PATH"
+#
+#
 #
 #
 # Set name of the theme to load --- if set to "random", it will
@@ -115,7 +124,8 @@ export LC_ALL=en_US.UTF-8
  alias vi="nvim"
  alias gs="git status"
  alias k="kubectl"
-alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
+ alias ls="exa"
+ # alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 kcn(){
    # connect to the right cluster
    gcloud container clusters get-credentials $1
@@ -171,29 +181,24 @@ export PATH="/usr/local/opt/php@7.2/bin:$PATH"
 #kube-ps1
 source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
-# added by Anaconda3 2019.10 installer
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/opt/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda init <<<
 export PATH=$HOME/.gem/ruby/2.6.3.p62/bin:$PATH
 export PATH=/usr/local/opt/ruby/bin:$PATH
 
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
 [ -f "/Users/obeng/.shopify-app-cli/shopify.sh" ] && source "/Users/obeng/.shopify-app-cli/shopify.sh"
 
-eval "$(pyenv init -)"
 
 autoload -Uz tetriscurses
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+eval "$(pyenv init -)" 
+
+
+export PATH="$HOME/.poetry/bin:$PATH"

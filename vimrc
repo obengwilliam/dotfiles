@@ -5,43 +5,41 @@ set nocompatible
 " set leader to space
 let mapleader = ","
 
+
+
 call plug#begin('~/.vim/plugged')
 
-Plug 'ryanoasis/vim-devicons'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'ryanoasis/vim-devicons'
 Plug 'honza/vim-snippets'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'sheerun/vim-polyglot'
-Plug 'skywind3000/asyncrun.vim'
+" Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'pedrohdz/vim-yaml-folds'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/limelight.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'rizzatti/dash.vim'
-Plug 'rust-lang/rust'
 Plug 'chrisbra/NrrwRgn'
-Plug 'hashivim/vim-terraform'
-Plug 'haishanh/night-owl.vim'
-Plug 'burner/vim-svelte'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'evanleck/vim-svelte'
 Plug 'uber/prototool', { 'rtp':'vim/prototool' }
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
+Plug 'morhetz/gruvbox'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'tpope/vim-commentary'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
-Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-surround'
-Plug 'tmhedberg/SimpylFold'
-Plug 'tomasr/molokai'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
@@ -52,33 +50,19 @@ set runtimepath^=~/.vim/bundle/node
 set termguicolors
 set foldmethod=syntax  
 set foldlevelstart=30
-let javaScript_fold=1  
-
-set t_Co=256
-
-let g:coc_global_extensions =[ "coc-yaml",  "coc-vimlsp","coc-html", 'coc-snippets','coc-json', 'coc-tsserver', 'coc-go', 'coc-eslint']
+let g:coc_global_extensions =["coc-stylelintplus", "coc-vimlsp","coc-html", "coc-snippets","coc-json",  'coc-go', 'coc-eslint',  'coc-java', 'coc-tsserver', 'coc-pyright']
 
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:fzf_preview_window = 'right:60%'
+let g:airline#extensions#tabline#enabled = 1
 
-let g:javascript_plugin_jsdoc = 1
+let g:gruvbox_contrast_dark = 'hard'
+set background=dark
+colorscheme gruvbox 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-let g:SimpylFold_docstring_preview=1
-let g:used_javascript_libs = 'ramda,lo-dash,chai,d3,react'
-
-let g:deoplete#enable_at_startup = 1
-
-let g:solarized_termtrans = 1
-let g:solarized_termcolors=256
-let g:solarized_visibility = "normal"
-let g:solarized_contrast = "normal"
-set background=light
-"colorscheme solarized 
-colorscheme molokai 
-"colorscheme night-owl 
-
-let g:airline_theme= "cool"
+let g:airline_theme= "molokai"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
@@ -86,6 +70,8 @@ let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linen
 let g:indent_guides_enable_on_vim_startup = 1 
 let g:indent_guides_guide_size = 1                                              
 set ts=2 sw=2 et
+
+
 " NerdTree
 " Automatically close nerdtree if its the only file needed
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -117,43 +103,16 @@ set hlsearch
 set relativenumber 
 set nu
 set noswapfile
-set cursorline 
+set nocursorline 
 
-set winwidth=84
-set winheight=5
-set winminheight=5
+set winwidth=50
+set winheight=10 
+set winminheight=10 
 set winheight=999
+
 set splitright
 set splitbelow
 
-let g:ale_linters = {
-\  'javascript': [],
-\  'go': ['golint'],
-\  'proto': ['prototool-lint'],
-\  'typescript':[],
-\  'python': ['pylint', 'pycodestyle'],
-\}
-
-let g:ale_fixers = {
-\   'javascript': [],
-\   'css': [ 'prettier'],
-\   'html': [ 'prettier'],
-\   'json': [ 'prettier'],
-\   'typescript': [],
-\   'python': ['isort','yapf', 'autopep8'],
-\}
-
-"let g:ale_lint_on_text_changed = 0
-"let g:ale_lint_on_enter = 1 
-let g:ale_lint_on_save = 1
-
-
-" Set this setting in vimrc if you want to fix files automatically on save.
-" This is off by default.
-let g:ale_fix_on_save = 1 
-
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " fzf
 nnoremap <c-p> :Files<cr>
@@ -168,11 +127,14 @@ nnoremap <Leader>nu :! npm run test:unit<Enter>
 nnoremap <Leader>ni :! npm install<Enter>
 nnoremap <Leader>jt :! jet test  
 inoremap jj <ESC>
-tnoremap <Esc> <C-\><C-n>
+tnoremap jj  <C-\><C-n>
 map <leader>r :NERDTreeFind<cr>
 vmap <leader>y "+y"
 
-
+map <leader>tt :vnew term://zsh<cr>
+map <leader>tn :new term://zsh<cr>
+map <leader>th <c-w>t<c-w>H 
+map <leader>tk <c-w>t<c-w>K 
 
 
 "map tab
@@ -202,6 +164,7 @@ nmap <c-h> <c-w>h
 nmap <c-t> <c-w>T
 nmap <c-v> <c-w>v
 nmap <c-s> <c-w>s
+nmap <c-x> <c-w>c
 
 
 nnoremap <silent> <C-left> :vertical resize +3 <CR>
@@ -222,14 +185,10 @@ nnoremap <silent> <c-down> :resize -3 <cr>
 " nnoremap <c-k> <C-w>k
 " nnoremap <c-l> <C-w>l
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-" AsyncRun
-let g:asyncrun_open = 8
-let g:asyncrun_exit = 0 
-"
+"if executable('ag')
+"  let g:ackprg = 'ag --vimgrep'
+"endif
+""
 "Conc exmaple config from here
 "will remove later, as i have time to go through them
  
@@ -244,7 +203,7 @@ set nowritebackup
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=200
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -276,8 +235,8 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> for confirm completion.
 " Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -327,10 +286,17 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+nmap <Esc> :call coc#float#close_all() <CR>
+
 let g:coc_snippet_next = '<tab>'
 
-let g:coc_node_path = '/Users/obeng/.nvm/versions/node/v10.17.0/bin/node' 
+let g:coc_node_path = '/Users/obeng/.nvm/versions/node/v15.5.1/bin/node' 
 autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 
 command! -bang -nargs=? -complete=dir Files
@@ -340,4 +306,7 @@ set guifont=DroidSansMono_Nerd_Font:h11
 
 vnoremap J :m '>+1<CR>gv-gv
 vnoremap K :m '<-2<CR>gv-gv
+
+set lazyredraw 
+
 
