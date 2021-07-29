@@ -1,0 +1,58 @@
+{
+  "suggest.noselect": false,
+  "pyright.organizeimports.provider": "pyright",
+  "python.sortImports.args": [
+    "-rc",
+    "-sp isort.cfg"
+  ],
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": [
+    "--line-length=99"
+  ],
+  "python.linting.pylintEnabled": true,
+  "python.linting.pydocstyleEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "python",
+    "golang",
+    "json",
+    "graphql",
+    "elixir"
+  ],
+  "go.goplsOptions": {
+    "gofumpt": true
+  },
+  "snippets.ultisnips.directories": [
+    "ultisnips"
+  ],
+  "snippets.extends": {
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
+  },
+  "typescript.format.enabled": false,
+  "javascript.format.enabled": false,
+  "eslint.autoFixOnSave": true,
+  "stylelintplus.filetypes": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "sugarss",
+    "vue",
+    "svelte",
+    "html",
+    "wxss"
+  ]
+}
