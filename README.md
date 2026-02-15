@@ -23,6 +23,19 @@ To use a different repo URL:
 ~/init_dotfile.sh https://github.com/obengwilliam/dotfiles.git
 ```
 
+Preview what would be backed up (no changes):
+
+```bash
+~/init_dotfile.sh --dry-run
+```
+
+Or use the Makefile targets:
+
+```bash
+make bootstrap
+make dry-run
+```
+
 1. Clone the repo as bare.
 ```bash
 git clone --bare https://github.com/obengwilliam/dotfiles.git ~/.dotfiles
