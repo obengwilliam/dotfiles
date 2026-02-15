@@ -1,0 +1,43 @@
+# Dotfiles
+
+## Features
+
+## Installation
+
+## Using With Existing Files (Bare Repo)
+
+This repo is intended to be used as a bare git repo with your `$HOME` as the work tree, so you do not need symlinks.
+
+1. Clone the repo as bare.
+```bash
+git clone --bare https://github.com/obengwilliam/dotfiles.git ~/.dotfiles
+```
+
+2. Create the alias and hide untracked files (so your entire `$HOME` does not show up in `status`).
+```bash
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+dotfiles config --local status.showUntrackedFiles no
+```
+
+3. Checkout. If you already have dotfiles in place, this may fail due to conflicts.
+```bash
+dotfiles checkout
+```
+
+4. If checkout fails, back up the conflicting files, then retry.
+```bash
+mkdir -p ~/.dotfiles_backup
+dotfiles checkout 2>&1 | grep -E '^\s' | awk '{print $1}' | xargs -I{} mv {} ~/.dotfiles_backup/{}
+dotfiles checkout
+```
+
+5. Use the repo.
+```bash
+dotfiles status
+dotfiles add ~/.zshrc
+dotfiles commit -m "Update zshrc"
+dotfiles push
+```
+
+## References
+- [Stratus3D](https://github.com/Stratus3D/dotfiles)
