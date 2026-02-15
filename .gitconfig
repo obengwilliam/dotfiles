@@ -1,0 +1,29 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Obeng William
+	email = iamkojoobeng@gmail.com
+[fetch]
+	prune = true
+[alias]
+	investigate = blame
+[core]
+	editor = vim
+	excludesFile = /Users/pdguest/.gitignore
+[push]
+	default = current
+[pull]
+	rebase = false
+[credential "https://github.com"]
+	useHttpPath = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[wt]
+	copyignored = true
+	copyuntracked = true
+	basedir = .worktrees
+	nocopy = .next
+	nocopy = .turbo
