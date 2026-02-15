@@ -8,6 +8,21 @@
 
 This repo is intended to be used as a bare git repo with your `$HOME` as the work tree, so you do not need symlinks.
 
+### Quick Setup Script
+
+Use the script to clone, back up existing files, and check out dotfiles:
+
+```bash
+chmod +x ~/init_dotfile.sh
+~/init_dotfile.sh
+```
+
+To use a different repo URL:
+
+```bash
+~/init_dotfile.sh https://github.com/obengwilliam/dotfiles.git
+```
+
 1. Clone the repo as bare.
 ```bash
 git clone --bare https://github.com/obengwilliam/dotfiles.git ~/.dotfiles
