@@ -294,3 +294,10 @@ eval "$(git wt --init zsh)"
 eval "$(direnv hook zsh)"
 
 
+
+# bun completions
+[ -s "/Users/pdguest/.bun/_bun" ] && source "/Users/pdguest/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
