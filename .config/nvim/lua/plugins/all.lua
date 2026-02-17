@@ -61,16 +61,55 @@ return {
     },
   },
 
-  -- add pyright to lspconfig
+  -- add pyright to lspconfig with codelens enabled
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
+      codelens = {
+        enabled = true,
+      },
       ---@type lspconfig.options
       servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+              },
+            },
+          },
+        },
+        ts_ls = {
+          settings = {
+            typescript = {
+              referencesCodeLens = { enabled = true },
+              implementationsCodeLens = { enabled = true },
+            },
+            javascript = {
+              referencesCodeLens = { enabled = true },
+            },
+          },
+        },
       },
+    },
+  },
+
+  -- inline reference/usage counts above symbols
+  {
+    "VidocqH/lsp-lens.nvim",
+    event = "LspAttach",
+    opts = {
+      sections = {
+        definition = false,
+        references = true,
+        implements = true,
+        git_authors = false,
+      },
+    },
+    keys = {
+      { "<leader>uL", "<cmd>LspLensToggle<cr>", desc = "Toggle LSP Lens" },
     },
   },
 
